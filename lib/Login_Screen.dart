@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'widget/text_field_widget.dart';
+
 class LoginScreen extends StatefulWidget {
   LoginScreen({
     Key? key,
@@ -44,16 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: TextFormField(
-            controller: emailControler,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(labelText: "Email"),
-            onChanged: (String val) {
-              //  email = val;
-            },
-            textInputAction: TextInputAction.done,
-            style: TextStyle(fontSize: 18.0),
-          ),
+          child: TextFieldWidget(Controler: emailControler),
         ),
         SizedBox(
           height: 40,
