@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sigin_sigup_firebase/widget_tree.dart';
 
 import 'HomePage.dart';
 import 'Login_Screen.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Auth(),
+      home: const WidgetTree(),
     );
   }
 }
