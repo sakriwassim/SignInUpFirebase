@@ -2,15 +2,34 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  LoginScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  // late String email =;
+  // late String password ;
+
+  final emailControler = TextEditingController();
+  final passwordControler = TextEditingController();
+
+  @override
+  void dispose() {
+    emailControler.dispose();
+    passwordControler.dispose();
+    super.dispose();
+  }
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailControler.text.trim(),
+        password: passwordControler.text.trim());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,20 +38,28 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 40,
         ),
-        TextField(
-          controller: emailController,
-          cursorColor: Colors.white,
-          textInputAction: TextInputAction.next,
+        TextFormField(
+          controller: emailControler,
+          textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(labelText: "Email"),
+          onChanged: (String val) {
+            //  email = val;
+          },
+          textInputAction: TextInputAction.done,
+          style: TextStyle(fontSize: 18.0),
         ),
         SizedBox(
           height: 40,
         ),
-        TextField(
-          controller: passwordController,
-          cursorColor: Colors.white,
-          textInputAction: TextInputAction.next,
-          decoration: InputDecoration(labelText: "Email"),
+        TextFormField(
+          controller: passwordControler,
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(labelText: "password"),
+          onChanged: (String val) {
+            //    password = val;
+          },
+          textInputAction: TextInputAction.done,
+          style: TextStyle(fontSize: 18.0),
         ),
         SizedBox(
           height: 40,
@@ -40,11 +67,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ElevatedButton(onPressed: signIn, child: Text("Login")),
       ],
     );
-  }
-
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
   }
 }
