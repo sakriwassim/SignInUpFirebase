@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sigin_sigup_firebase/auth.dart';
 
 import 'widget/text_field_widget.dart';
 
@@ -13,9 +14,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // late String email =;
-  // late String password ;
-
   final emailControler = TextEditingController();
   final passwordControler = TextEditingController();
 
@@ -28,47 +26,41 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future signIn() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      Auth().signInWithEmailAndPassword(
           email: emailControler.text.trim(),
           password: passwordControler.text.trim());
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       print(e);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 40,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: TextFieldWidget(Controler: emailControler),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: TextFormField(
-            controller: passwordControler,
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(labelText: "password"),
-            onChanged: (String val) {
-              //    password = val;
-            },
-            textInputAction: TextInputAction.done,
-            style: TextStyle(fontSize: 18.0),
+    return Scaffold(
+      appBar: AppBar(title: Text("LoginScreen")),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 40,
           ),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        ElevatedButton(onPressed: signIn, child: Text("Login")),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextFieldWidget(Controler: emailControler),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextFieldWidget(Controler: passwordControler),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          ElevatedButton(onPressed: signIn, child: Text("Login")),
+        ],
+      ),
     );
   }
 }
