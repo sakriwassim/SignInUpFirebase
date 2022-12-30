@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "937213262507",
+    "project_id": "signinup-d17e7",
+    "storage_bucket": "signinup-d17e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937213262507:android:337b0b538aa095513ad5ee",
+        "android_client_info": {
+          "package_name": "com.example.sigin_sigup_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937213262507-11ql7a2lkr64ei9tvaivdj78o9skm7er.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuZh9Nfr43C4ehNIBh9rCk4cs3iLVTA9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937213262507-11ql7a2lkr64ei9tvaivdj78o9skm7er.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
