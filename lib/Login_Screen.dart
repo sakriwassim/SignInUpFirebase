@@ -25,9 +25,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailControler.text.trim(),
-        password: passwordControler.text.trim());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailControler.text.trim(),
+          password: passwordControler.text.trim());
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -38,28 +42,34 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
           height: 40,
         ),
-        TextFormField(
-          controller: emailControler,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(labelText: "Email"),
-          onChanged: (String val) {
-            //  email = val;
-          },
-          textInputAction: TextInputAction.done,
-          style: TextStyle(fontSize: 18.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: TextFormField(
+            controller: emailControler,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(labelText: "Email"),
+            onChanged: (String val) {
+              //  email = val;
+            },
+            textInputAction: TextInputAction.done,
+            style: TextStyle(fontSize: 18.0),
+          ),
         ),
         SizedBox(
           height: 40,
         ),
-        TextFormField(
-          controller: passwordControler,
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(labelText: "password"),
-          onChanged: (String val) {
-            //    password = val;
-          },
-          textInputAction: TextInputAction.done,
-          style: TextStyle(fontSize: 18.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: TextFormField(
+            controller: passwordControler,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(labelText: "password"),
+            onChanged: (String val) {
+              //    password = val;
+            },
+            textInputAction: TextInputAction.done,
+            style: TextStyle(fontSize: 18.0),
+          ),
         ),
         SizedBox(
           height: 40,
